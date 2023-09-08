@@ -7,6 +7,7 @@ interface IUnit{
   value: number
 }
 
+
 @Component({
   selector: 'app-admin-panel',
   templateUrl: './admin-panel.component.html',
@@ -17,18 +18,33 @@ interface IUnit{
 
 export class AdminPanelComponent  implements OnInit, OnDestroy {
 
+  selectedName: string = '';
+  students: any[] = [
+    {
+      name:'line'
+    },
+    {
+      name:'column'
+    }
+  ];
+
+
   matrix: IUnit[] = []
   lastIndexChanged = 0
   randomInterval = interval(1000)//1min
 
   dataPoints: {label:string, y: number}[] = []
 
+
   chartOptions = {
     title: {
       text: "نمودار بر حسب رطوبت"
     },
     data: [{
-      type: "column",
+      type:'line',
+      //this.selectedName,
+       //line
+      //  "column",
       dataPoints: [
         { label: "00:00:00",  y: 40  },
 
@@ -55,6 +71,8 @@ export class AdminPanelComponent  implements OnInit, OnDestroy {
 
   ngOnInit() {
   }
+
+
 
   private GenerateRandomMatrix(min: number, max: number): void {
     this.matrix[this.lastIndexChanged] = {
@@ -85,5 +103,12 @@ this.chartOptions = structuredClone(this.chartOptions)
   (): void {
     this._destroy$.next()
     this._destroy$.complete()
+  }
+
+  getSelectedValue(value:any){
+
+    console.log(this.selectedName)
+    // Prints selected value
+    console.log(value);
   }
 }

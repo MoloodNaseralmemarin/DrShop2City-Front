@@ -6,7 +6,11 @@
 </div>
 
 
+<select [(ngModel)]="selectedName">
+  <option *ngFor="let student of students" [value]="student.name">{{student.name}}</option>
+</select>
 
+<p>You have selected {{selectedName}}</p>
 <div>
   <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
 </div>
